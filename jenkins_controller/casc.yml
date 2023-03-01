@@ -1,0 +1,36 @@
+jenkins:
+  securityRealm:
+    local:
+      users:
+      - id: "panda"
+        password: "panda"
+  authorizationStrategy:
+    globalMatrix:
+      permissions:
+        - "Overall/Administer:panda"
+  numExecutors: 0
+
+  credentials:
+    system:
+      domainCredentials:
+        - credentials
+          - usernamePassword:
+            id : "artifactory"
+            username: "admin"
+            password: "password"
+            scope: GLOBAL
+
+  credentials:
+    system:
+      domainCredentials:
+        - credentials:
+          - basicSSHUserPrivateKey:
+            id: "jenkins_agent"
+            username: "jenkins"
+            privateKeySource:
+              directEntry:
+              privateKey: |
+                -----BEGIN RSA PRIVATE KEY-----
+                ...
+                -----END RSA PRIVATE KEY-----
+            scope: GLOBAL
