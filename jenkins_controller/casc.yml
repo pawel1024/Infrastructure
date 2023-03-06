@@ -13,7 +13,7 @@ jenkins:
   credentials:
     system:
       domainCredentials:
-        - credentials
+        - credentials:
           - usernamePassword:
             id : "artifactory"
             username: "admin"
