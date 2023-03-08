@@ -9,17 +9,19 @@ jenkins:
       permissions:
         - "Overall/Administer:panda"
   numExecutors: 0
-
-credentials:
-  system:
-    domainCredentials:
-      - credentials:
-        - usernamePassword:
-          id : "artifactory"
-          username: "admin"
-          password: "password"
-          scope: GLOBAL
-
+  nodes:
+  - permanent:
+      labelString: "agent"
+      launcher:
+        ssh:
+          credentialsId: "jenkins_agent"
+          host: "192.168.44.44"
+          port: 2222
+          sshHostKeyVerificationStrategy: "nonVerifyingKeyVerificationStrategy"
+      name: "agent"
+      remoteFS: "/home/jenkins/agent"
+      retentionStrategy: "always"
+ 
 credentials:
   system:
     domainCredentials:
@@ -35,11 +37,45 @@ credentials:
           privateKeySource:
             directEntry:
               privateKey: |
-                -----BEGIN RSA PRIVATE KEY-----
-                <KLUCZ>
-                -----END RSA PRIVATE KEY-----
+                -----BEGIN OPENSSH PRIVATE KEY-----
+                b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABlwAAAAdzc2gtcn
+                NhAAAAAwEAAQAAAYEA4cnkToNv57RDMYiv3/B8+l+S7gESW3/R9ssiA3NmOgZc849G9DWe
+                CGPMTLVDTJcbukujx6EjuSv1aGl6lt0pyvyLsMe8iWJDVekvp/h/bBXDKTIx4CeeKYAfNN
+                k2GpqSB7tlEHOiG9u2wY63m7MiSKZFxrnPxZ/NGfgmfLENuQpx6Xv7t+YqJY9ITfgNiv8r
+                O2FO0ok7Rj7HyRpUOevdJJOT07FkKajUG4ITjWFEuNX/dKsfW86f6RbxkG/ufYCY3iR6se
+                wZPvi8C86oE25WRQ5pjNnIuY254IGPuCTCo8Qhs3gjvvwgEv6heyZ5/xuxgQU3T0Z/J7CS
+                JoWgUElNxJTXfXbDqceG+0VHDtKVCRomNupUhA8hJdJii3z8YhaBWu9q8ZMyam4G1Kztak
+                Mq1JWhUNUBjl/plCJHNEaBGghIW3a8s1viiVONcauNOf7dTIlK1S8siicVwR7JogTpy/tf
+                62VBi5ketisr7mcTYgSp4qPVJPtKArtim+drk1PnAAAFiA/bdY8P23WPAAAAB3NzaC1yc2
+                EAAAGBAOHJ5E6Db+e0QzGIr9/wfPpfku4BElt/0fbLIgNzZjoGXPOPRvQ1nghjzEy1Q0yX
+                G7pLo8ehI7kr9WhpepbdKcr8i7DHvIliQ1XpL6f4f2wVwykyMeAnnimAHzTZNhqakge7ZR
+                BzohvbtsGOt5uzIkimRca5z8WfzRn4JnyxDbkKcel7+7fmKiWPSE34DYr/KzthTtKJO0Y+
+                x8kaVDnr3SSTk9OxZCmo1BuCE41hRLjV/3SrH1vOn+kW8ZBv7n2AmN4kerHsGT74vAvOqB
+                NuVkUOaYzZyLmNueCBj7gkwqPEIbN4I778IBL+oXsmef8bsYEFN09GfyewkiaFoFBJTcSU
+                1312w6nHhvtFRw7SlQkaJjbqVIQPISXSYot8/GIWgVrvavGTMmpuBtSs7WpDKtSVoVDVAY
+                5f6ZQiRzRGgRoISFt2vLNb4olTjXGrjTn+3UyJStUvLIonFcEeyaIE6cv7X+tlQYuZHrYr
+                K+5nE2IEqeKj1ST7SgK7Ypvna5NT5wAAAAMBAAEAAAGBAJo8L5jycB73JG9Rz9JJlRXy84
+                thcAjQ57yORk3VJp+8eQJnfTCU778LbSN5Lt/C2U4JHXfgu2ZigOEyLGuh6Eqg+UtpJYEz
+                fovRHpy/Q0uyEf6yKx/T8FapDqgrOKozrE1b1U3Hr5UYIV9W/lV9qI24BzIY+7Uj1BdJTA
+                EhcR5V5Dp6VxjoQSInHl0kdRvd8so9TnrDA5qYiCD3u1FVrVqu9OxG4QUULtAbqv+I0kjw
+                5e/sdR9hphqzcZAY5fEVRg7ZkKb5wjGQfKn16ubSHczogSIHuLhjd6HFMGcoONSu8SEnXQ
+                RfCGxmIyT0+2Yk+FxLc4D+ZmwaW7/gulYMiY7PEqvJ5vktWyXPhemwOPl9Wk4GjY81/DE4
+                5542sL1RDFTWaN6xX5Lbw4Pr8x4chRWcT9Yt+WSJjyRT/D8kPv5C7mYGVJQcOlhn9ysnbU
+                3KCjiCdmUSn8EKpbOV52i8sy/YLkvEry6I/AcK4JNQBJ1rM8Mx8qsjEg3pKbxGBDwVAQAA
+                AMEApq9cdP+WwzLbT25NI8zB4LnSRZCiS72PkT20zWFAUjIK1E3Py+GQ4jqnMU8LsDGBh4
+                qZ1j7dupRlRM8gfT7K+4o4YY+TYY34Dz/nmgzMJRA2o7jhXgsCC9sil9owc7LKg+OxxgWt
+                zloT9Cz0wkT/rP34k8Xo+XKc87f2YkYpbj5mm9Y/Du5cWWY9eh+Cnhc5q3H7VRana+qs8n
+                TQu0edoaYrNkOa6AOpAbIo/uFN9hp8+iSgEe77PHZQbbwj92xNAAAAwQD4AVWPJNKCAMmc
+                XrsnEVa9/opZ8yq6fo5K0VnDxAWyhDYQ2bALHbJCHoD7bHPxVBNodCeDD7cFK8Lhe2aXB1
+                +yLo+4F5R1S1vcA6Rwb/ElkA5iFNr8+oyUD9TsWQ2lYTxu56odUwrf890sk87SCtTashxI
+                DrzEw6PYZvsBjEneifitnvZvQcEEBIwHrPUpPSyx9ClssZUwwbQBbKiTu1hbno2P9l81C5
+                5KtGccKaivZzF9Czhs51Mjak+mZ57H7gMAAADBAOkRNxDJPJvshTkqowPNgl6V6/KfGVRa
+                eDoHkzUyoAxJleel9wVSL+aRWnFQzbiwNCOGLNJVTF//jLHwF1/rj9wYItY57joKmYmC5R
+                UEkbetesNDHBRTpVzwV1M1x6V1We6Tka442Ehx+7p90Ga5UvHUTO8rMF66iS0qjQypwew/
+                qDGomC9UDjBjmBYxsNSaZKY4ouukLI4Je75BzZ8B3DWO+JQ73AGw8N2b3y6Ny2vkMDeiL3
+                3yT4Y6nURG40o/TQAAAA1wYW5kYUB2YWdyYW50AQIDBA==
+                -----END OPENSSH PRIVATE KEY-----
           scope: GLOBAL
-
 tool:
   sonarRunnerInstallation:
     installations:
